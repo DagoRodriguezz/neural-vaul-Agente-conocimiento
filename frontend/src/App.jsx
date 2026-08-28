@@ -141,7 +141,7 @@ function App() {
               <button
                 type="button"
                 onClick={async () => {
-                  const demoPath = '../mock_vault';
+                  const demoPath = 'mock';
                   setIsCheckingVault(true);
                   try {
                     const res = await fetch('http://localhost:8000/api/config/vault', {
@@ -150,6 +150,7 @@ function App() {
                       body: JSON.stringify({ vault_path: demoPath })
                     });
                     if (!res.ok) throw new Error('Error conectando bóveda de prueba');
+                    localStorage.removeItem('active_vault_path');
                     localStorage.setItem('active_vault_path', demoPath);
                     setActiveVaultPath(demoPath);
                     setVaultPathInput(demoPath);

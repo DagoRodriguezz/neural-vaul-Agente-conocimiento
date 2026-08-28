@@ -12,6 +12,8 @@ services:
       - ./mock_vault:/app/mock_vault
     env_file:
       - ./backend/.env
+    environment:
+      - MOCK_VAULT_PATH=/app/mock_vault
     restart: unless-stopped
 
   frontend:

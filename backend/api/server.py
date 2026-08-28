@@ -3,6 +3,7 @@
 import json
 import re
 import shutil
+import os
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -117,11 +118,23 @@ async def get_graph():
 @app.post("/api/config/vault")
 async def config_vault(request: VaultRequest):
     """Dynamically set the active vault directory path."""
-    new_path = Path(request.vault_path).resolve()
+    raw_path = (request.vault_path or "").strip()
+
+    # Si viene vacío, dice 'mock', contiene 'mock_vault' o la ruta no existe en el contenedor pero contiene mock
+    if not raw_path or "mock" in raw_path.lower():
+        target_path = os.getenv("MOCK_VAULT_PATH", "/app/mock_vault")
+        if not os.path.exists(target_path):
+            # Fallback para desarrollo local fuera de Docker
+            target_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "mock_vault"))
+    else:
+        target_path = raw_path
+
+    new_path = Path(target_path).resolve()
+
     if not new_path.exists() or not new_path.is_dir():
         raise HTTPException(
             status_code=400,
-            detail="The provided path does not exist or is not a directory."
+            detail=f"Directorio no encontrado: {target_path}"
         )
 
     VaultConfig.set_vault_path(str(new_path))
