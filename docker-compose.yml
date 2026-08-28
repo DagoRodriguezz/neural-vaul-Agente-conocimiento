@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # CRÍTICO: Mapeo de la bóveda de prueba local hacia el contenedor
+      - ./mock_vault:/app/mock_vault
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      # Redirección del puerto 5173 habitual hacia el 80 del Nginx en el contenedor
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

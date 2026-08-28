@@ -1,0 +1,23 @@
+# Dependencias Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# Dependencias Backend
+backend/venv/
+backend/.env
+backend/__pycache__/
+backend/**/*.pyc
+backend/.pytest_cache/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# SO / Editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
