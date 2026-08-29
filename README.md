@@ -1,4 +1,4 @@
-[![Live Demo](https://img.shields.io/badge/Demo-Vercel-blue?style=for-the-badge&logo=vercel)](https://TU-LINK.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Demo-Vercel-blue?style=for-the-badge&logo=vercel)](https://neural-vaul-agente-conocimiento.vercel.app/)
 # 🧠 NeuralVault - AI Knowledge Manager
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.141-009688) ![LangGraph](https://img.shields.io/badge/LangGraph-Agentic-purple) ![React](https://img.shields.io/badge/React-Vite-61DAFB)
