@@ -28,11 +28,15 @@ El proyecto está preparado para ejecutarse de forma aislada mediante contenedor
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tu-usuario/neuralvault.git
-cd neuralvault
+git clone https://github.com/DagoRodriguezz/neural-vaul-Agente-conocimiento.git
+cd neural-vaul-Agente-conocimiento
+
+# 2. Configurar variables de entorno
+cp backend/.env.example backend/.env
+# Edita backend/.env y agrega tu GOOGLE_API_KEY
 
 # Levantar los servicios
-docker-compose up --build -d
+docker compose up --build -d
 ```
 La aplicación estará disponible en `http://localhost:5173`.
 
